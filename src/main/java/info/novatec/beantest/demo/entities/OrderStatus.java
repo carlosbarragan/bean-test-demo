@@ -8,6 +8,6 @@ package info.novatec.beantest.demo.entities;
  * 
  */
 public enum OrderStatus {
-    OPEN, PLACED
+    OPEN, PLACED;
 
 }

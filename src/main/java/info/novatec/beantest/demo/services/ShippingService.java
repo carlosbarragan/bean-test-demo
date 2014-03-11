@@ -11,7 +11,6 @@ import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author Carlos Barragan
@@ -19,8 +18,6 @@ import javax.validation.constraints.NotNull;
  */
 @Stateless
 public class ShippingService {
-
-    private static final Locale GERMANY = Locale.GERMANY;
 
     @EJB
     CustomerService customerService;
@@ -41,16 +38,17 @@ public class ShippingService {
      * @param order
      * @return
      */
-    public double calculateShipping(@NotNull Order order) {
+    public double calculateShipping(Order order) {
         Customer customer = customerService.loadCustomerByCustomerId(order.getCustomerId());
         CustomerStatus customerStatus = customer.getCustomerStatus();
-        if (GERMANY.equals(order.getShippingAddress().getCountry())) {
-            return customerStatus.reducedShippingExcept(cs -> cs.equals(CustomerStatus.VIP),
-                    () -> atLeastFiveItemsIn(order));
+        return customerStatus
+                .reducedShippingWhen((cs -> cs.equals(CustomerStatus.VIP) ? atLeastFiveItemsIn(order)
+                        : isShippingInGermany(order)));
 
-        } else {
-            return customerStatus.getNormalShipping();
-        }
+    }
+
+    private boolean isShippingInGermany(Order order) {
+        return Locale.GERMANY.equals(order.getShippingAddress().getCountry());
     }
 
     private boolean atLeastFiveItemsIn(Order order) {

@@ -20,7 +20,7 @@ public class CustomerPersistenceService extends PersistenceService<Customer> {
 
     public Customer loadCustomerByCustomerId(String customerId) {
         return em
-                .createQuery("Select c from customer where c.customerId=:customerId",
+                .createQuery("Select c from Customer as c where c.customerId=:customerId",
                         Customer.class).setParameter("customerId", customerId).getSingleResult();
     }
 

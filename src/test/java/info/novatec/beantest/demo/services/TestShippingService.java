@@ -3,6 +3,7 @@
  */
 package info.novatec.beantest.demo.services;
 
+import static org.hamcrest.Matchers.is;
 import info.novatec.beantest.demo.entities.Customer;
 import info.novatec.beantest.demo.entities.CustomerStatus;
 import info.novatec.beantest.demo.entities.Item;
@@ -12,7 +13,6 @@ import info.novatec.beantest.demo.entities.ShippingAddress;
 
 import java.util.Locale;
 
-import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,8 +53,7 @@ public class TestShippingService {
     @Test
     public void shouldCalculateShippingForCustomerInGermanyAndVipNonPlusUltraStatus() {
 
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany),
-                Matchers.is(0.0));
+        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(0.0));
     }
 
     @Test
@@ -63,8 +62,7 @@ public class TestShippingService {
         orderWithShippingAddressInGermany.addOrderitem(new OrderItem(Item.create("item", 1.0))
                 .withQuantity(6));
 
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany),
-                Matchers.is(3.0));
+        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(3.0));
     }
 
     @Test
@@ -73,8 +71,7 @@ public class TestShippingService {
         orderWithShippingAddressInGermany.addOrderitem(new OrderItem(Item.create("item", 1.0))
                 .withQuantity(4));
 
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany),
-                Matchers.is(0.0));
+        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(0.0));
     }
 
     @Test
@@ -85,7 +82,6 @@ public class TestShippingService {
         orderWithShippingAddressInGermany.addOrderitem(new OrderItem(Item.create("item", 1.0))
                 .withQuantity(4));
 
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany),
-                Matchers.is(4.0));
+        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(4.0));
     }
 }

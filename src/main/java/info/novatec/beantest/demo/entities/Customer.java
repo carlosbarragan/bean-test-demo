@@ -3,6 +3,7 @@
  */
 package info.novatec.beantest.demo.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +23,7 @@ public class Customer extends BaseEntity {
 
     @NotNull
     @Size(min = 5)
+    @Column(unique = true)
     private String customerId;
 
     @Enumerated(EnumType.STRING)
