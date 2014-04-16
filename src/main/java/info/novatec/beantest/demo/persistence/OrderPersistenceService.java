@@ -18,8 +18,8 @@ public class OrderPersistenceService extends PersistenceService<Order> {
     }
 
     public List<Order> loadAllOrdersForCustomer(String customerId) {
-        return em.createQuery("Select o from Order o where o.customerId=:customerId", Order.class)
-                .setParameter("customerId", customerId).getResultList();
+        return em.createQuery(Order.Queries.ALL_ORDERS_BY_CUSTOMER, Order.class)
+                .setParameter(Order.Parameters.CUSTOMER_ID, customerId).getResultList();
     }
 
 }
