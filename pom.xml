@@ -5,6 +5,10 @@
 	<artifactId>beanTest-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -27,7 +31,7 @@
 		<dependency>
 			<groupId>info.novatec</groupId>
 			<artifactId>bean-test</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -77,9 +81,9 @@
 	</dependencies>
 	<repositories>
 		<repository>
-			<id>JBoss</id>
-			<name>JBoss repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<id>Novatec</id>
+			<name>Novatec Repository</name>
+			<url>http://repository.novatec-gmbh.de/content/repositories/novatec</url>
 		</repository>
 
 	</repositories>
