@@ -29,6 +29,10 @@ public abstract class PersistenceService<T extends BaseEntity> {
     }
 
     public T save(T entity) {
+    	if(entity.getId() < 0) {
+    		em.persist(entity);
+    		return entity;
+    	}
         return em.merge(entity);
     }
 

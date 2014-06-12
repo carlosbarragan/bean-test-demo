@@ -7,10 +7,13 @@ import info.novatec.beantest.demo.entities.Order;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 /**
  * @author cb
  * 
  */
+@Stateless
 public class OrderPersistenceService extends PersistenceService<Order> {
 
     public OrderPersistenceService() {
