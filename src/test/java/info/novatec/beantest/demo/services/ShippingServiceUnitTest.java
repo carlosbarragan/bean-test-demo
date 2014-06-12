@@ -25,7 +25,7 @@ import org.mockito.MockitoAnnotations;
  * @author cb
  * 
  */
-public class TestShippingService {
+public class ShippingServiceUnitTest {
 
     @Mock
     private CustomerService customerService;
