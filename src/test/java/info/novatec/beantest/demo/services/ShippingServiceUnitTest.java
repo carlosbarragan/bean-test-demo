@@ -4,6 +4,9 @@
 package info.novatec.beantest.demo.services;
 
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.when;
 import info.novatec.beantest.demo.entities.Customer;
 import info.novatec.beantest.demo.entities.CustomerStatus;
 import info.novatec.beantest.demo.entities.Item;
@@ -44,9 +47,8 @@ public class ShippingServiceUnitTest {
         orderWithShippingAddressInGermany.setShippingAddress(shippingAddressInGermany);
 
         MockitoAnnotations.initMocks(this);
-        Mockito.reset(customerService);
-        Mockito.when(customerService.loadCustomerByCustomerId(Mockito.eq("12345"))).thenReturn(
-                new Customer("name", "123", CustomerStatus.VIP));
+        reset(customerService);
+        when(customerService.loadCustomerByCustomerId(eq("12345"))).thenReturn(new Customer("name", "123", CustomerStatus.VIP));
 
     }
 
@@ -76,7 +78,7 @@ public class ShippingServiceUnitTest {
 
     @Test
     public void shouldCalculateShippingForCustomerInGermanyAndNormalStatus() {
-        Mockito.when(customerService.loadCustomerByCustomerId(Mockito.eq("12345"))).thenReturn(
+        when(customerService.loadCustomerByCustomerId(Mockito.eq("12345"))).thenReturn(
                 new Customer("name", "123", CustomerStatus.NORMAL));
 
         orderWithShippingAddressInGermany.addOrderitem(new OrderItem(Item.create("item", 1.0))
