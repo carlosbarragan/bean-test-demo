@@ -12,7 +12,6 @@ import info.novatec.beantest.demo.entities.Item;
 import info.novatec.beantest.demo.entities.Order;
 import info.novatec.beantest.demo.entities.OrderItem;
 import info.novatec.beantest.demo.entities.ShippingAddress;
-import info.novatec.beantest.demo.mocks.PersistenceServiceUtils;
 import info.novatec.beantest.demo.persistence.CustomerPersistenceService;
 
 import java.util.Locale;
@@ -39,10 +38,6 @@ public class OrderServiceBeanTest extends BaseBeanTest {
 
     @Before
     public void setUp() {
-        PersistenceServiceUtils persistenceUtils = getBean(PersistenceServiceUtils.class);
-        persistenceUtils.executeInTransaction(em -> em.createQuery("Delete from Customer")
-                .executeUpdate());
-
         orderWithShippingAddressInGermany = new Order();
 
         orderWithShippingAddressInGermany.setShippingAddress(shippingAddressInGermany);
