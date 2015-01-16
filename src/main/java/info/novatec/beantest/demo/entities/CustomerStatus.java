@@ -10,36 +10,37 @@ import java.util.function.Function;
  * 
  */
 public enum CustomerStatus {
+	
     NORMAL(5, 4), VIP(3, 0), VIP_NON_PLUS_ULTRA(3, 0);
 
-    private final double normalShipping;
-    private final double reducedShipping;
+    private final double normalShippingCost;
+    private final double reducedShippingCost;
 
     /**
-     * @param normalShipping
-     * @param reducedShipping
+     * @param normalShippingCost
+     * @param reducedShippingCost
      */
     private CustomerStatus(double normalShipping, double reducedShipping) {
-        this.normalShipping = normalShipping;
-        this.reducedShipping = reducedShipping;
+        this.normalShippingCost = normalShipping;
+        this.reducedShippingCost = reducedShipping;
     }
 
     /**
      * @return the normalShipping
      */
     public double getNormalShipping() {
-        return normalShipping;
+        return normalShippingCost;
     }
 
     /**
      * @return the reducedShipping
      */
     public double getReducedShipping() {
-        return reducedShipping;
+        return reducedShippingCost;
     }
 
     public double reducedShippingWhen(Function<CustomerStatus, Boolean> rsf) {
-        return rsf.apply(this) ? reducedShipping : normalShipping;
+        return rsf.apply(this) ? reducedShippingCost : normalShippingCost;
     }
 
 }

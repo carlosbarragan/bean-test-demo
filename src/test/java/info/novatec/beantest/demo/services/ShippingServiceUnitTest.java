@@ -4,6 +4,7 @@
 package info.novatec.beantest.demo.services;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
@@ -64,7 +65,7 @@ public class ShippingServiceUnitTest {
         orderWithShippingAddressInGermany.addOrderitem(new OrderItem(Item.create("item", 1.0))
                 .withQuantity(6));
 
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(3.0));
+        assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(3.0));
     }
 
     @Test
@@ -73,7 +74,7 @@ public class ShippingServiceUnitTest {
         orderWithShippingAddressInGermany.addOrderitem(new OrderItem(Item.create("item", 1.0))
                 .withQuantity(4));
 
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(0.0));
+        assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(0.0));
     }
 
     @Test
@@ -84,6 +85,6 @@ public class ShippingServiceUnitTest {
         orderWithShippingAddressInGermany.addOrderitem(new OrderItem(Item.create("item", 1.0))
                 .withQuantity(4));
 
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(4.0));
+        assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(4.0));
     }
 }

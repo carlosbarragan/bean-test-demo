@@ -32,7 +32,7 @@ public class Order extends BaseEntity {
 	}
 
     @OneToMany(mappedBy = "order")
-    private final List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne
     private ShippingAddress shippingAddress;
@@ -121,6 +121,10 @@ public class Order extends BaseEntity {
      */
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+    
+    public int getTotalOrderedItems() {
+    	return this.getOrderitems().stream().mapToInt(OrderItem::getQuantity).sum();
     }
 
 }

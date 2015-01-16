@@ -4,6 +4,7 @@
 package info.novatec.beantest.demo.services;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import info.novatec.beantest.api.BaseBeanTest;
 import info.novatec.beantest.demo.entities.Customer;
 import info.novatec.beantest.demo.entities.CustomerStatus;
@@ -14,7 +15,6 @@ import info.novatec.beantest.demo.persistence.CustomerPersistenceService;
 
 import java.util.Locale;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,7 +47,7 @@ public class ShippingServiceBeanTest extends BaseBeanTest {
     @Test
     public void shouldCalculateShippingForCustomerInGermanyAndVipNonPlusUltraStatus() {
         ShippingService cut = getBean(ShippingService.class);
-        Assert.assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(0.0));
+        assertThat(cut.calculateShipping(orderWithShippingAddressInGermany), is(0.0));
     }
 
 }

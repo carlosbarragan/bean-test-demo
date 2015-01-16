@@ -57,7 +57,7 @@ public class OrderServiceBeanTest extends BaseBeanTest {
         orderWithShippingAddressInGermany.setCustomerId(VIP_CUSTOMER_ID);
         Stream.of(Item.create("item1", 10), Item.create("item2", 5.0))
                 .map((Item item) -> new OrderItem(item).withQuantity(2))
-                .forEach(orderItem -> orderWithShippingAddressInGermany.addOrderitem(orderItem));
+                .forEach(orderWithShippingAddressInGermany::addOrderitem);
 
         double orderCost = orderService.calculateOrderPrice(orderWithShippingAddressInGermany);
         assertThat(orderCost, is(30.0));
@@ -70,7 +70,7 @@ public class OrderServiceBeanTest extends BaseBeanTest {
 
         Stream.of(Item.create("item1", 10), Item.create("item2", 5.0))
                 .map((Item item) -> new OrderItem(item).withQuantity(2))
-                .forEach(orderItem -> orderWithShippingAddressInGermany.addOrderitem(orderItem));
+                .forEach(orderWithShippingAddressInGermany::addOrderitem);
 
         double orderCost = orderService.calculateOrderPrice(orderWithShippingAddressInGermany);
         assertThat(orderCost, is(28.5));

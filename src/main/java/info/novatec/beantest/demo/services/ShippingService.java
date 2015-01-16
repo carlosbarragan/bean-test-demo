@@ -52,6 +52,6 @@ public class ShippingService {
     }
 
     private boolean atLeastFiveItemsIn(Order order) {
-        return order.getOrderitems().stream().mapToInt(orderItem -> orderItem.getQuantity()).sum() <= 5;
+        return order.getTotalOrderedItems() <= 5;
     }
 }
